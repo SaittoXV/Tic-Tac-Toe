@@ -17,7 +17,11 @@ def main():
 
     while True:
         hasDigit = [True for row in board for col in row if type(col) == int]
+        hasWon = checkWinner(board)
         if len(hasDigit) == 0:
+            break
+        elif hasWon:
+            print("Someone Won!!")
             break
         else:
             user_input = int(input("enter your move number: "))
@@ -26,7 +30,6 @@ def main():
             drawBorder(board)
 
 def computerTurn(board):
-    hasFound = False
     computer_choose = randrange(1,10)
     print(computer_choose)
     for indexRow,row in enumerate(board):
@@ -35,14 +38,10 @@ def computerTurn(board):
                 continue
             elif computer_choose == col:
                 board[indexRow][indexCol] = "X"
-                hasFound = True
-                break
-            elif hasFound == False and indexRow == len(board)-1 and indexCol == len(row)-1:
+                return board
+            elif indexRow == len(board)-1 and indexCol == len(row)-1:
                 print("recurse")
                 return computerTurn(board)
-        if hasFound:
-            return board
-            break
 
 def userTurn(board,user_input):
     for indexRow,row in enumerate(board):
@@ -50,6 +49,14 @@ def userTurn(board,user_input):
             if user_input == col:
                 board[indexRow][indexCol] = "O"
                 return board
+            
+def checkWinner(board):
+    for index in range(3):
+        if board[index][0] == board[index][1] and board[index][0] == board[index][2]:
+            return True
+        elif board[0][index] == board[1][index] and board[0][index] == board[2][index]:
+            return True
+        return False
 
 if __name__ == "__main__":
     main()
