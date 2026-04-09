@@ -1,5 +1,3 @@
-Here you go — a clean, ready‑to‑use **README.md** file based entirely on your provided text, with no extra analysis or changes.
-
 ***
 
 # Tic‑Tac‑Toe (Python Project)
