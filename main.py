@@ -19,13 +19,13 @@ def main():
         hasDigit = [True for row in board for col in row if type(col) == int]
         hasWon,userWon = checkWinner(board)
         if hasWon:
-            drawBorder(board)
             if userWon:
                 print("You Won!!")
             else:
                 print("Computer Won!!")
             break
         elif len(hasDigit) == 0:
+            print("Draw!!")
             break
         user_input = int(input("enter your move number: "))
         userTurn(board,user_input)
